@@ -1,0 +1,32 @@
+.container {
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.timer-display {
+  font-size: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.timer-container {
+  border-radius: 1rem;
+  border: solid 2px #fff;
+  padding: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.timer-buttons {
+  margin-top: 3rem;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.timer-button1 {
+  margin-right: 3rem;
+}
