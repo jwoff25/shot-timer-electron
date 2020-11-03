@@ -1,5 +1,4 @@
 const SerialPort = window.require("serialport");
-
 const BAUDRATE = 115200;
 
 export const getSerialPortPath = async () => {

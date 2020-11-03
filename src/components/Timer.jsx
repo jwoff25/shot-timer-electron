@@ -33,12 +33,12 @@ export default class Timer extends Component {
       var currentTime = 0;
       const parser = this.port.pipe(new Readline({ delimiter: "\n" }));
       this.port.flush((err) => {
-        console.log("flush err", err);
+        console.log("flushed port ", err);
       });
       parser.on("data", (data) => {
         if (parseInt(data) === 1 && currentTime !== 0) {
           this.port.close((err) => {
-            console.log("port close", err);
+            console.log("port closed ", err);
           });
           const timeToDisplay = parseFloat(currentTime.toFixed(2));
           this.setState((prevState) => ({
@@ -82,34 +82,23 @@ export default class Timer extends Component {
     const { timer, isRunning, results } = this.state;
     return (
       <div className='container'>
-        <Grid container spacing={10}>
-          <Grid item sm={6}>
+        <Grid container spacing={3}>
+          <Grid item xs={12}>
             <div className='timer-container'>
               <span className='timer-display'>{timer}</span>
             </div>
             <div className='timer-buttons'>
               <Button
                 variant='contained'
-                color='primary'
-                className='timer-button1'
+                color={isRunning ? "secondary" : "primary"}
                 size='large'
-                disabled={isRunning}
-                onClick={this.startTimer}
+                onClick={isRunning ? this.stopTimer : this.startTimer}
               >
-                Start
-              </Button>
-              <Button
-                variant='contained'
-                color='secondary'
-                className='timer-button2'
-                size='large'
-                onClick={this.stopTimer}
-              >
-                Stop
+                {isRunning ? "Stop" : "Start"}
               </Button>
             </div>
           </Grid>
-          <Grid item sm={6}>
+          <Grid item xs={12}>
             <ScoreTable results={results} />
             <Button
               variant='contained'

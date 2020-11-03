@@ -11,8 +11,8 @@ import Paper from "@material-ui/core/Paper";
 export default function ScoreTable({ results }) {
   return (
     <div className='table-container'>
-      <TableContainer component={Paper} className='score-table'>
-        <Table className='table' aria-label='simple table'>
+      <TableContainer className='score-table' component={Paper}>
+        <Table className='table' aria-label='simple table' size='small'>
           <TableHead>
             <TableRow>
               <TableCell>Round</TableCell>

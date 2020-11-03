@@ -1,32 +1,23 @@
 .container {
-  height: 100vh;
-  justify-content: center;
-  align-items: center;
-  display: flex;
+  margin-top: 1rem;
 }
 
 .timer-display {
-  font-size: 80px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  font-size: 64px;
 }
 
 .timer-container {
   border-radius: 1rem;
   border: solid 2px #fff;
-  padding: 4rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  padding: 1rem 2rem;
 }
 
 .timer-buttons {
-  margin-top: 3rem;
+  margin-top: 1rem;
   display: flex;
   justify-content: space-evenly;
 }
 
-.timer-button1 {
-  margin-right: 3rem;
+.clear-button {
+  margin-top: 3rem;
 }
