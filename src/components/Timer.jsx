@@ -11,6 +11,7 @@ export default class Timer extends Component {
 
     this.state = {
       isRunning: false,
+      isDisabled: false,
       timer: "00.00",
       results: [],
     };
@@ -25,16 +26,21 @@ export default class Timer extends Component {
   startTimer = async () => {
     this.setState({
       isRunning: true,
+      isDisabled: true,
     });
     this.port = await setSerialPort();
     // Read the port data
     setTimeout(() => {
+      this.setState({
+        isDisabled: false,
+      });
       var startTime = Date.now();
       var currentTime = 0;
       const parser = this.port.pipe(new Readline({ delimiter: "\n" }));
       this.port.flush((err) => {
         console.log("flushed port ", err);
       });
+      new Audio("/beep.mp3").play();
       parser.on("data", (data) => {
         if (parseInt(data) === 1 && currentTime !== 0) {
           this.port.close((err) => {
@@ -79,7 +85,7 @@ export default class Timer extends Component {
   }
 
   render() {
-    const { timer, isRunning, results } = this.state;
+    const { timer, isRunning, results, isDisabled } = this.state;
     return (
       <div className='container'>
         <Grid container spacing={3}>
@@ -91,6 +97,7 @@ export default class Timer extends Component {
               <Button
                 variant='contained'
                 color={isRunning ? "secondary" : "primary"}
+                disabled={isDisabled}
                 size='large'
                 onClick={isRunning ? this.stopTimer : this.startTimer}
               >
