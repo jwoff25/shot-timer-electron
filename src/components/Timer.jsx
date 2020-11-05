@@ -34,7 +34,6 @@ export default class Timer extends Component {
       isRunning: true,
       isDisabled: true,
     });
-    console.log(process.env.NODE_ENV);
     this.port = await setSerialPort();
     // Read the port data
     setTimeout(() => {
