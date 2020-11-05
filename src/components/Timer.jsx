@@ -4,6 +4,7 @@ import ScoreTable from "./ScoreTable";
 import React, { Component } from "react";
 import { setSerialPort } from "../utils/Serial";
 const Readline = require("@serialport/parser-readline");
+const path = require("path");
 
 export default class Timer extends Component {
   constructor(props) {
@@ -17,6 +18,11 @@ export default class Timer extends Component {
     };
 
     this.intervalId = null;
+    this.beep = new Audio(
+      process.env.NODE_ENV === "development"
+        ? "/beep.mp3"
+        : path.join(window.process.resourcesPath, "beep.mp3")
+    );
 
     this.startTimer = this.startTimer.bind(this);
     this.stopTimer = this.stopTimer.bind(this);
@@ -28,9 +34,11 @@ export default class Timer extends Component {
       isRunning: true,
       isDisabled: true,
     });
+    console.log(process.env.NODE_ENV);
     this.port = await setSerialPort();
     // Read the port data
     setTimeout(() => {
+      this.beep.play();
       this.setState({
         isDisabled: false,
       });
@@ -40,7 +48,6 @@ export default class Timer extends Component {
       this.port.flush((err) => {
         console.log("flushed port ", err);
       });
-      new Audio("/beep.mp3").play();
       parser.on("data", (data) => {
         if (parseInt(data) === 1 && currentTime !== 0) {
           this.port.close((err) => {

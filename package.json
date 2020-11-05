@@ -1,9 +1,29 @@
 {
-  "name": "shot-timer-react",
+  "name": "shot-timer",
+  "displayName": "Shot Timer",
   "version": "0.1.0",
   "private": true,
   "homepage": "./",
-  "main": "src/start.js",
+  "main": "public/electron.js",
+  "author": "Jer @ CustomScripts",
+  "description": "Shot Timer for Steel Challenge Japan to be used with Arduino + piezoelectric sensor.",
+  "build": {
+    "appId": "com.customscripts.shottimer",
+    "files": [
+      "build/**/*",
+      "mode_modules/**/*"
+    ],
+    "extraFiles": {
+      "from": "resources",
+      "to": "resources",
+      "filter": [
+        "**/*"
+      ]
+    },
+    "directories": {
+      "buildResources": "assets"
+    }
+  },
   "dependencies": {
     "@material-ui/core": "^4.11.0",
     "@testing-library/jest-dom": "^5.11.5",
@@ -25,7 +45,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "pack": "electron-builder --dir"
+    "pack": "electron-builder --dir",
+    "prod": "electron-builder",
+    "electron-pack": "build --em.main=build/electron.js"
   },
   "eslintConfig": {
     "extends": [
