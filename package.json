@@ -46,8 +46,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "pack": "electron-builder --dir",
-    "prod": "electron-builder",
-    "electron-pack": "build --em.main=build/electron.js"
+    "prod": "electron-builder"
   },
   "eslintConfig": {
     "extends": [
