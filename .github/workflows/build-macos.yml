@@ -42,4 +42,4 @@ jobs:
           # Artifact name
           name: build
           # A file, directory or wildcard pattern that describes what to upload
-          path: /Users/runner/work/shot-timer/shot-timer/dist/mac/shot-timer.app
+          path: /Users/runner/work/shot-timer-electron/shot-timer-electron/dist/mac/shot-timer.app
